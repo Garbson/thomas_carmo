@@ -2,9 +2,9 @@
 import { Fragment, useEffect, useRef } from 'react';
 
 const STATS = [
-  { count: 20,  suffix: '%', label: 'crescimento populacional\nem 5 anos' },
-  { count: 90,  suffix: '%+', label: 'ocupação na alta temporada\ndo litoral SC' },
-  { count: 10,  suffix: '+', label: 'anos de atuação\nno mercado imobiliário' },
+  { prefix: 'R$', count: 200, suffix: 'M+', label: 'em vendas\nrealizadas' },
+  { count: 100,  suffix: '+', label: 'clientes\natendidos' },
+  { count: 10,   suffix: '+', label: 'anos de experiência\nno litoral catarinense' },
 ];
 
 export default function StatsSection() {
@@ -54,6 +54,11 @@ export default function StatsSection() {
             <Fragment key={s.label}>
               <div className="stat-item text-center py-5 px-5">
                 <div className="flex items-baseline justify-center gap-1 mb-3">
+                  {s.prefix && (
+                    <span className="font-display text-gold font-light" style={{ fontSize: 'clamp(20px,2.5vw,28px)' }}>
+                      {s.prefix}
+                    </span>
+                  )}
                   <span
                     className="stat-num font-display text-creme font-light leading-none tracking-tight"
                     style={{ fontSize: 'clamp(52px,7vw,88px)' }}
@@ -61,9 +66,11 @@ export default function StatsSection() {
                   >
                     0
                   </span>
-                  <span className="font-display text-gold font-light" style={{ fontSize: 'clamp(28px,3.5vw,44px)' }}>
-                    {s.suffix}
-                  </span>
+                  {s.suffix && (
+                    <span className="font-display text-gold font-light" style={{ fontSize: 'clamp(28px,3.5vw,44px)' }}>
+                      {s.suffix}
+                    </span>
+                  )}
                 </div>
                 <p className="text-xs tracking-wide text-creme/40 leading-snug max-w-[180px] mx-auto whitespace-pre-line">
                   {s.label}
